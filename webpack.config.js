@@ -1,8 +1,9 @@
-let path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-console.log(path.resolve(__dirname, 'dist'));
+const path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+console.log(path.resolve(__dirname, 'dist'))
 module.exports = {
   mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -16,11 +17,14 @@ module.exports = {
     open: true
   },
   module: {
-    rules: [{ test: /\.js$/, use: 'babel-loader' }]
+    rules: [{
+      test: /\.js$/,
+      use: 'babel-loader'
+    }]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html'
     })
   ]
-};
+}
