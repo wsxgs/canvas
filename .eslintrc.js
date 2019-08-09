@@ -3,17 +3,15 @@ module.exports = {
     browser: true,
     es6: true
   },
-  extends: [
-    'standard'
-  ],
+  extends: ['standard'],
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    SharedArrayBuffer: 'readonly',
+    document: true
   },
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  rules: {
-  }
+  rules: {}
 }

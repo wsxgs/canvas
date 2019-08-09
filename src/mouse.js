@@ -2,7 +2,7 @@
  * Canvas 鼠标经过效果
  */
 
-function mouseOverCanvas () {
+function mouseCanvas () {
   const canvas = document.getElementById('canvas')
   const screenW = document.clientWidth || document.body.clientWidth
   const screenH = document.clientHeight || document.body.clientHeight
@@ -27,7 +27,7 @@ function mouseOverCanvas () {
     })
   })
 
-  function scale () {
+  function move () {
     ctx.clearRect(0, 0, canvasW, canvasH)
     ctx.save()
     if (b++ > 255) {
@@ -50,10 +50,10 @@ function mouseOverCanvas () {
       }
     }
     ctx.restore()
-    window.requestAnimationFrame(scale)
+    window.requestAnimationFrame(move)
   }
 
-  scale()
+  move()
 }
 
-export default mouseOverCanvas
+export default mouseCanvas
