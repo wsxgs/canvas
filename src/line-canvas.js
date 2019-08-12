@@ -9,7 +9,8 @@ class LineCanvas {
     this.canvasH = '' // canvas 高度
     this.pointNum = '' // 点数量
     this.velocity = '' // 移动速度
-    this.pointList = [] // 点数组
+		this.pointList = [] // 点数组
+		this.animationId = ''
   }
 
   init (config = {
@@ -31,9 +32,7 @@ class LineCanvas {
     this.velocity = config.velocity
 
     // 添加鼠标移动事件
-    window.addEventListener('mousemove', (e) => {
-      this.handleMouseMOve(e)
-    })
+    canvas.onmousemove = this.handleMouseMOve.bind(this)
 
     // 创建点
     this.createpoints()
@@ -117,7 +116,7 @@ class LineCanvas {
       this.drawLine(this.pointList[i], i)
     }
     this.ctx.restore()
-    window.requestAnimationFrame(this.pointMove.bind(this))
+    this.animationId = window.requestAnimationFrame(this.pointMove.bind(this))
   }
 
   // 鼠标经过加速
@@ -132,7 +131,12 @@ class LineCanvas {
       vy: 0,
       style: 'rgba(0,0,0,1)'
     }
-  }
+	}
+	
+	// 停止动画
+	destroy () {
+		cancelAnimationFrame(this.animationId);
+	}
 }
 
 const lineCanvas = new LineCanvas()

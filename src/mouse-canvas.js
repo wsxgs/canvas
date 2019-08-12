@@ -10,33 +10,38 @@ class MouseCanvas {
     this.ballList = [] // 小球数组
     this.r = Math.floor(Math.random() * 255)
     this.g = Math.floor(Math.random() * 255)
-    this.b = Math.floor(Math.random() * 255)
+		this.b = Math.floor(Math.random() * 255)
+		this.animationId = ''
   }
 
 	/**
 	 * 初始化
 	 */
   init () {
-    const canvas = document.getElementById('canvas')
+    let canvas = document.getElementById('canvas')
     this.ctx = canvas.getContext('2d')
     const screenW = document.clientWidth || document.body.clientWidth
     const screenH = document.clientHeight || document.body.clientHeight
     this.dpr = window.devicePixelRatio
     this.canvasW = this.dpr * screenW
-    this.canvasH = this.dpr * screenH
+		this.canvasH = this.dpr * screenH
+		canvas.width = this.canvasW
+    canvas.height = this.canvasH
 
 		// 监听鼠标移动
-    canvas.addEventListener('mousemove', (e) => {
-      this.ballList.push({
-        x: e.x * this.dpr,
-        y: e.y * this.dpr,
-        radius: 1
-      })
-    })
+    canvas.onmousemove = this.addPoint.bind(this)
 
     // 运动
     this.pointMove()
-  }
+	}
+	
+	addPoint (e) {
+		this.ballList.push({
+			x: e.x * this.dpr,
+			y: e.y * this.dpr,
+			radius: 1
+		})
+	}
 
 	/**
 	 * 点移动
@@ -64,8 +69,13 @@ class MouseCanvas {
       }
     }
     this.ctx.restore()
-    window.requestAnimationFrame(this.pointMove.bind(this))
-  }
+    this.animationId = window.requestAnimationFrame(this.pointMove.bind(this))
+	}
+	
+	// 停止动画
+	destroy () {
+		cancelAnimationFrame(this.animationId);
+	}
 }
 const mouseCanvas = new MouseCanvas()
 export default mouseCanvas

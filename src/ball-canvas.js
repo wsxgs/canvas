@@ -10,7 +10,8 @@ class BallCanvas {
     this.ballNum = '' // 小球数量
     this.ballSize = '' // 小球尺寸
     this.velocity = '' // 移动速度
-    this.ballList = [] // 小球数组
+		this.ballList = [] // 小球数组
+		this.animationId = ''
   }
 
   init (config = {
@@ -34,9 +35,7 @@ class BallCanvas {
     this.velocity = config.velocity
 
     // 添加鼠标移动事件
-    canvas.addEventListener('mousemove', (e) => {
-      this.handleMouseMove(e)
-    })
+    canvas.onmousemove = this.handleMouseMove.bind(this)
 
     // 创建小球
     this.initBalls()
@@ -92,7 +91,7 @@ class BallCanvas {
       this.draw(this.ballList[i])
     }
     this.ctx.restore()
-    window.requestAnimationFrame(this.ballMove.bind(this))
+    this.animationId = window.requestAnimationFrame(this.ballMove.bind(this))
   }
 
   // 鼠标经过加速
@@ -111,7 +110,12 @@ class BallCanvas {
         }
       }
     })
-  }
+	}
+	
+	// 停止动画
+	destroy () {
+		cancelAnimationFrame(this.animationId);
+	}
 }
 const ballCanvas = new BallCanvas()
 export default ballCanvas

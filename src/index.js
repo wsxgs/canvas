@@ -9,6 +9,11 @@ textCanvas.init('12345')
 const menu = document.querySelector('.menu')
 const menyList = document.querySelectorAll('.menu button')
 menu.addEventListener('click', (e) => {
+	ballCanvas.destroy()
+	lineCanvas.destroy()
+	textCanvas.destroy()
+	mouseCanvas.destroy()
+
   let activeIndex = 0
   if (e.target.nodeName === 'BUTTON') {
     activeIndex = e.target.attributes['data-index'].value

@@ -12,7 +12,8 @@ class TextCanvas {
     this.pointList = [] // 点数组
     this.newImgData = [] // 文字图像数据
     this.mouseX = 0 // 鼠标X坐标
-    this.mouseY = 0 // 鼠标Y坐标
+		this.mouseY = 0 // 鼠标Y坐标
+		this.animationId = ''
   }
 
   /**
@@ -20,7 +21,7 @@ class TextCanvas {
 	 * @param {String} text
 	 */
   init (text = '12345') {
-    const canvas = document.getElementById('canvas')
+    let canvas = document.getElementById('canvas')
     this.ctx = canvas.getContext('2d')
 
     const screenW = document.clientWidth || document.body.clientWidth
@@ -33,9 +34,7 @@ class TextCanvas {
     this.ratio = this.canvasW / this.canvasH
 
     // 监听鼠标移动
-    canvas.addEventListener('mousemove', (e) => {
-      this.handleMouseMove(e)
-    })
+    canvas.onmousemove = this.handleMouseMove.bind(this)
 
     // 绘制文字
     this.createText(text)
@@ -156,14 +155,19 @@ class TextCanvas {
       this.ctx.fill()
     }
     this.ctx.restore()
-    window.requestAnimationFrame(this.pointMove.bind(this))
+    this.animationId = window.requestAnimationFrame(this.pointMove.bind(this))
   }
 
   // 鼠标移动
   handleMouseMove (e) {
     this.mouseX = e.x * this.dpr
     this.mouseY = e.y * this.dpr
-  }
+	}
+	
+	// 停止动画
+	destroy () {
+		cancelAnimationFrame(this.animationId);
+	}
 }
 const textCanvas = new TextCanvas()
 export default textCanvas
