@@ -18,7 +18,8 @@ class LineCanvas {
     velocity: 2
   }) {
     const canvas = document.getElementById('canvas')
-    this.ctx = canvas.getContext('2d')
+		this.ctx = canvas.getContext('2d')
+		this.pointList = []
 
     const screenW = document.clientWidth || document.body.clientWidth
     const screenH = document.clientHeight || document.body.clientHeight

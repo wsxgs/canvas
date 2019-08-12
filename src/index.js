@@ -3,7 +3,7 @@ import lineCanvas from './line-canvas'
 import textCanvas from './text-canvas'
 import mouseCanvas from './mouse-canvas'
 
-textCanvas.init('12345')
+textCanvas.init('1234')
 
 // 点击切换
 const menu = document.querySelector('.menu')
@@ -39,7 +39,7 @@ menu.addEventListener('click', (e) => {
           break
         case 2:
           // 文字
-          textCanvas.init('12345')
+          textCanvas.init('1234')
           break
         case 3:
           // 鼠标

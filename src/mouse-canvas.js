@@ -19,7 +19,9 @@ class MouseCanvas {
 	 */
   init () {
     let canvas = document.getElementById('canvas')
-    this.ctx = canvas.getContext('2d')
+		this.ctx = canvas.getContext('2d')
+		this.ballList = []
+		
     const screenW = document.clientWidth || document.body.clientWidth
     const screenH = document.clientHeight || document.body.clientHeight
     this.dpr = window.devicePixelRatio

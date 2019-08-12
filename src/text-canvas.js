@@ -22,7 +22,9 @@ class TextCanvas {
 	 */
   init (text = '12345') {
     let canvas = document.getElementById('canvas')
-    this.ctx = canvas.getContext('2d')
+		this.ctx = canvas.getContext('2d')
+		this.newImgData = []
+		this.pointList = []
 
     const screenW = document.clientWidth || document.body.clientWidth
     const screenH = document.clientHeight || document.body.clientHeight
