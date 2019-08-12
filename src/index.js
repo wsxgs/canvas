@@ -1,9 +1,9 @@
-import ballCanvas from './ball'
-import lineCanvas from './line'
-import textCanvas from './text'
-import mouseCanvas from './mouse'
+import ballCanvas from './ball-canvas'
+import lineCanvas from './line-canvas'
+import textCanvas from './text-canvas'
+import mouseCanvas from './mouse-canvas'
 
-textCanvas('12345')
+textCanvas.init('12345')
 
 // 点击切换
 const menu = document.querySelector('.menu')
@@ -18,8 +18,8 @@ menu.addEventListener('click', (e) => {
       menyList[activeIndex].classList = 'button on'
       switch (i) {
         case 0:
-          // 小球
-          ballCanvas({
+					// 小球
+          ballCanvas.init({
             number: 100,
             size: 50,
             velocity: 2
@@ -27,15 +27,18 @@ menu.addEventListener('click', (e) => {
           break
         case 1:
           // 线
-          lineCanvas()
+          lineCanvas.init({
+						number: 200,
+						velocity: 2
+					})
           break
         case 2:
           // 文字
-          textCanvas('12345')
+          textCanvas.init('12345')
           break
         case 3:
           // 鼠标
-          mouseCanvas()
+          mouseCanvas.init()
       }
     } else {
       menyList[i].classList = 'button'
