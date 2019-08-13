@@ -2,11 +2,12 @@
  * canvas绘制随机点及线条
  */
 class LineCanvas {
-  contructor () {
+  constructor () {
     this.ctx = null // canvas 实例
     this.dpr = 1 // window dpr
     this.canvasW = '' // canvas 宽度
-    this.canvasH = '' // canvas 高度
+		this.canvasH = '' // canvas 高度
+		this.pointColor = 'rgba(175,175,175,1)'
     this.pointNum = '' // 点数量
     this.velocity = '' // 移动速度
 		this.pointList = [] // 点数组
@@ -44,6 +45,7 @@ class LineCanvas {
 
   // 创建小球
   createpoints () {
+		let _this = this
     this.pointList = []
     for (let i = 0; i < this.pointNum; i++) {
       this.pointList[i] = {
@@ -51,9 +53,11 @@ class LineCanvas {
         y: Math.floor(Math.random() * this.canvasH),
         radius: 3,
         vx: Math.random() > 0.5 ? Math.random() * this.velocity : -Math.random() * this.velocity,
-        vy: Math.random() > 0.5 ? Math.random() * this.velocity : -Math.random() * this.velocity
-      }
-      this.pointList[i].style = `#aaa`
+				vy: Math.random() > 0.5 ? Math.random() * this.velocity : -Math.random() * this.velocity,
+				
+			}
+			console.log(this)
+			this.pointList[i].style = this.pointColor
       this.drawPoint(this.pointList[i])
     }
   }
@@ -61,7 +65,7 @@ class LineCanvas {
   // 绘制小球
   drawPoint (point) {
     this.ctx.beginPath()
-    this.ctx.fillStyle = point.style
+		this.ctx.fillStyle = point.style
     const nextX = point.x + point.vx
     const nextY = point.y + point.vy
 
@@ -100,7 +104,7 @@ class LineCanvas {
           }
           this.ctx.beginPath()
           this.ctx.moveTo(item.x, item.y)
-          this.ctx.strokeStyle = `rgba(0,0,0,${diaphaneity})`
+          this.ctx.strokeStyle = `rgba(150,150,150,${diaphaneity})`
           this.ctx.lineTo(this.pointList[j].x, this.pointList[j].y)
           this.ctx.stroke()
         }
@@ -111,7 +115,7 @@ class LineCanvas {
   // 小球移动
   pointMove () {
     this.ctx.clearRect(0, 0, this.canvasW, this.canvasH)
-    this.ctx.save()
+		this.ctx.save()
     for (let i = 0; i < this.pointList.length; i++) {
       this.drawPoint(this.pointList[i])
       this.drawLine(this.pointList[i], i)

@@ -7,7 +7,7 @@ class MouseCanvas {
     this.dpr = 1 // window dpr
     this.canvasW = '' // canvas 宽度
     this.canvasH = '' // canvas 高度
-    this.ballList = [] // 小球数组
+		this.ballList = [] // 小球数组
     this.r = Math.floor(Math.random() * 255)
     this.g = Math.floor(Math.random() * 255)
 		this.b = Math.floor(Math.random() * 255)
