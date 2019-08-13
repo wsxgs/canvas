@@ -85,7 +85,7 @@ class LineCanvas {
 
   // 画线
   drawLine (item, index) {
-    let baseDistance = 150 // 划线值
+    let baseDistance = 100 // 划线值
     if (index === this.pointList.length - 1) {
       baseDistance = 300
     }

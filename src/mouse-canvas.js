@@ -62,7 +62,7 @@ class MouseCanvas {
       this.ctx.fillStyle = `rgba(${this.r},${this.g},${this.b})`
       this.ctx.arc(this.ballList[i].x, this.ballList[i].y, this.ballList[i].radius, 0, Math.PI * 2, true)
       this.ctx.fill()
-      this.ballList[i].radius += 1.5
+      this.ballList[i].radius += 3
       if (this.ballList.length - 1 === i && this.ballList[i].radius >= 30) {
         this.ballList[i].radius = 1
       } else if (this.ballList.length - 1 !== i && this.ballList[i].radius > 30) {
