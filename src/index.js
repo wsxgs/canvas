@@ -8,11 +8,11 @@ textCanvas.init('1234')
 // 点击切换
 const menu = document.querySelector('.menu')
 const menyList = document.querySelectorAll('.menu button')
-menu.addEventListener('click', (e) => {
-	ballCanvas.destroy()
-	lineCanvas.destroy()
-	textCanvas.destroy()
-	mouseCanvas.destroy()
+menu.addEventListener('click', e => {
+  ballCanvas.destroy()
+  lineCanvas.destroy()
+  textCanvas.destroy()
+  mouseCanvas.destroy()
 
   let activeIndex = 0
   if (e.target.nodeName === 'BUTTON') {
@@ -23,7 +23,7 @@ menu.addEventListener('click', (e) => {
       menyList[activeIndex].classList = 'button on'
       switch (i) {
         case 0:
-					// 小球
+          // 小球
           ballCanvas.init({
             number: 100,
             size: 50,
@@ -33,9 +33,9 @@ menu.addEventListener('click', (e) => {
         case 1:
           // 线
           lineCanvas.init({
-						number: 200,
-						velocity: 2
-					})
+            number: 200,
+            velocity: 2
+          })
           break
         case 2:
           // 文字

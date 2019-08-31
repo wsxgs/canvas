@@ -7,7 +7,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    filename: 'main.js',
+    chunkFilename: '[name].js'
   },
   devServer: {
     contentBase: path.join(__dirname, 'src'),
@@ -17,10 +18,20 @@ module.exports = {
     open: true
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      use: 'babel-loader'
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
